@@ -43,5 +43,47 @@
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
   <script src="index.js"></script>
+  <!--my script starts here--> 
+<script>
+  // We request a database instance.
+  const request = indexedDB.open("budget", 1);
+
+   // Create an object store inside the onupgradeneeded method. Create schema
+   request.onupgradeneeded = ({ target }) => {
+        const db = event.target.result;
+        const objectStore = db.createObjectStore("transactions",
+        {keyPath: 'transactionID'},
+        );
+      
+      objectStore.createIndex('nameIndex', 'name');
+   //   objectStore.createIndex('valueIndex', 'value');
+  //    objectStore.createIndex('dateIndex', 'date');
+      // console.log(transStore);
+    };
+  // This returns a result that we can then manipulate.
+  request.onsuccess = event => {
+    const db = request.result;
+   // displayData();
+        const transaction = db.transaction(["transactions"], "readwrite");
+        const transStore = transaction.objectStore("transactions");
+        console.log(transStore);
+        const nameIndex = transStore.index('nameIndex');
+        console.log(nameIndex);
+     //   const valueIndex = transStore.index('valueIndex');
+     //   const dateIndex = transStore.index('dateIndex');
+        // probably to add 2 more lines later
+  
+        // Adds data to our objectStore
+        transStore.add({ transactionID: "1", name: "rhino horn", value: "-599.99", date: '12/19/2021' });
+
+// Return an item by keyPath
+const getRequest = transStore.get("1");
+        getRequest.onsuccess = () => {
+          console.log(getRequest.result);
+        };
+
+    console.log(request.result.name);};
+  </script>
+<!--my script ends here--> 
 </body>
 </html>
