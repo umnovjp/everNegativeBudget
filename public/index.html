@@ -56,8 +56,8 @@
         );
       
       objectStore.createIndex('nameIndex', 'name');
-   //   objectStore.createIndex('valueIndex', 'value');
-  //    objectStore.createIndex('dateIndex', 'date');
+      objectStore.createIndex('valueIndex', 'value');
+      objectStore.createIndex('dateIndex', 'date');
       // console.log(transStore); type something
     };
   // This returns a result that we can then manipulate.
@@ -66,16 +66,16 @@
    // displayData();
         const transaction = db.transaction(["transactions"], "readwrite");
         const transStore = transaction.objectStore("transactions");
-        console.log(transStore);
+        
         const nameIndex = transStore.index('nameIndex');
         console.log(nameIndex);
-     //   const valueIndex = transStore.index('valueIndex');
-     //   const dateIndex = transStore.index('dateIndex');
+        const valueIndex = transStore.index('valueIndex');
+        const dateIndex = transStore.index('dateIndex');
         // probably to add 2 more lines later
   
         // Adds data to our objectStore
         transStore.add({ transactionID: "1", name: "rhino horn", value: "-599.99", date: '12/19/2021' });
-
+        console.log(transStore);
 // Return an item by keyPath
 const getRequest = transStore.get("1");
         getRequest.onsuccess = () => {
