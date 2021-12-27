@@ -42,14 +42,15 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+  <script src="/db.js"></script>
   <script src="index.js"></script>
   <!--my script starts here--> 
 <script>
   // We request a database instance.
-  const request = indexedDB.open("budget", 1);
+  const request1 = indexedDB.open("budget", 1); //change1
 
    // Create an object store inside the onupgradeneeded method. Create schema
-   request.onupgradeneeded = ({ target }) => {
+   request1.onupgradeneeded = ({ target }) => {  //change2
         const db = event.target.result;
         const objectStore = db.createObjectStore("transactions",
         {keyPath: 'transactionID'},
@@ -61,8 +62,8 @@
       // console.log(transStore); type something
     };
   // This returns a result that we can then manipulate.
-  request.onsuccess = event => {
-    const db = request.result;
+  request1.onsuccess = event => { //change3
+    const db = request1.result;//change4
    // displayData();
         const transaction = db.transaction(["transactions"], "readwrite");
         const transStore = transaction.objectStore("transactions");
@@ -82,7 +83,7 @@ const getRequest = transStore.get("1");
           console.log(getRequest.result);
         };
 
-    console.log(request.result.name);};
+    console.log(request1.result.name);}; //change5
   </script>
 <!--my script ends here--> 
 </body>
