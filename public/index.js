@@ -147,6 +147,7 @@ function sendTransaction(isAdding) {
 document.querySelector("#add-btn").onclick = function() {
   sendTransaction(true);
 };
+console.log('u r in index.js');
 
 document.querySelector("#sub-btn").onclick = function() {
   sendTransaction(false);

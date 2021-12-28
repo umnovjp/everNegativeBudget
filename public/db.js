@@ -1,7 +1,7 @@
 let db;
 let budgetVersion;
 // create a new db request for a "BudgetDB" database.
-const request = indexedDB.open('BudgetDB', budgetVersion || 21);
+const request = indexedDB.open('budget', budgetVersion || 21);
 
 request.onupgradeneeded = function (event) {
   // create object store called "BudgetStore" and set autoIncrement to true
@@ -63,7 +63,7 @@ function checkDatabase() {
         },
       })
         .then((response) => response.json())
-        .then(() => {
+        .then((res) => {
           // if successful, open a transaction on your pending db
           // access your pending object store
           // clear all items in your store
