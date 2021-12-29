@@ -47,6 +47,7 @@
   <!--my script starts here--> 
 <script>
   // We request a database instance.
+  console.log('u r in html script');
   const request1 = indexedDB.open("budget", 1); //change1
 
    // Create an object store inside the onupgradeneeded method. Create schema
@@ -59,12 +60,14 @@
       objectStore.createIndex('nameIndex', 'name');
       objectStore.createIndex('valueIndex', 'value');
       objectStore.createIndex('dateIndex', 'date');
-      // console.log(transStore); type something
+      console.log('inside onupgarde'); s
     };
+    console.log('u r after onupgrade');
   // This returns a result that we can then manipulate.
   request1.onsuccess = event => { //change3
+    console.log('u r in onsuccess');
     const db = request1.result;//change4
-   // displayData();
+    
         const transaction = db.transaction(["transactions"], "readwrite");
         const transStore = transaction.objectStore("transactions");
         
@@ -83,8 +86,9 @@ const getRequest = transStore.get("1");
         getRequest.onsuccess = () => {
           console.log(getRequest.result);
         };
-
+       
     console.log(request1.result.name);}; //change5
+    
   </script>
 <!--my script ends here--> 
 </body>
