@@ -6,8 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="theme-color" content="#317EFB">
   <link rel="shortcut icon" href="icons/icon-192x192.png" type="image/x-icon">
+
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="styles.css">
+
   <title>Budget Tracker</title>
 </head>
 <body>
@@ -15,6 +17,7 @@
     <div class="total">
       <div class="total">Your total is: $<span id="total">0</span></div>
     </div>
+
     <div class="form">
       <input type="text" id="t-name" placeholder="Name of transaction" />
       <input type="number" min="0" id="t-amount" placeholder="Transaction amount" />
@@ -22,6 +25,7 @@
       <button id="sub-btn"><i class="fa fa-minus"></i> Subtract Funds</button>
       <p class="error"></p>
     </div>
+
     <div class="transactions">
       <table>
         <thead>
@@ -43,11 +47,10 @@
   <!--my script starts here--> 
 <script>
   // We request a database instance.
-  //const request = indexedDB.open("budget", 1);
+  console.log('u r in html script');
   const request1 = indexedDB.open("budget", 1); //change1
 
    // Create an object store inside the onupgradeneeded method. Create schema
-  // request.onupgradeneeded = ({ target }) => {
    request1.onupgradeneeded = ({ target }) => {  //change2
         const db = event.target.result;
         const objectStore = db.createObjectStore("transactions",
@@ -57,15 +60,14 @@
       objectStore.createIndex('nameIndex', 'name');
       objectStore.createIndex('valueIndex', 'value');
       objectStore.createIndex('dateIndex', 'date');
-      // console.log(transStore); type something
+      console.log('inside onupgarde'); s
     };
+    console.log('u r after onupgrade');
   // This returns a result that we can then manipulate.
-  //request.onsuccess = event => {
-  //  const db = request.result;
   request1.onsuccess = event => { //change3
     console.log('u r in onsuccess');
     const db = request1.result;//change4
-   // displayData();
+    
         const transaction = db.transaction(["transactions"], "readwrite");
         const transStore = transaction.objectStore("transactions");
         
@@ -74,19 +76,19 @@
         const valueIndex = transStore.index('valueIndex');
         const dateIndex = transStore.index('dateIndex');
         // probably to add 2 more lines later
-        console.log({ transactionID: "1", name: "rhino horn", value: "-599.99", date: '12/19/2021' });
   
         // Adds data to our objectStore
-       // transStore.add({ transactionID: "1", name: "rhino horn", value: "-599.99", date: '12/19/2021' });
+      //  transStore.add({ transactionID: "1", name: "rhino horn", value: "-599.99", date: '12/19/2021' });
         console.log(transStore);
+        console.log('transactionID: "1", name: "rhino horn", value: "-599.99", date: ');
 // Return an item by keyPath
 const getRequest = transStore.get("1");
         getRequest.onsuccess = () => {
           console.log(getRequest.result);
         };
-
-  //  console.log(request.result.name);};
+       
     console.log(request1.result.name);}; //change5
+    
   </script>
 <!--my script ends here--> 
 </body>

@@ -43,11 +43,11 @@
   <!--my script starts here--> 
 <script>
   // We request a database instance.
-  //const request = indexedDB.open("budget", 1);
+  const request = indexedDB.open("budget", 1);
   const request1 = indexedDB.open("budget", 1); //change1
 
    // Create an object store inside the onupgradeneeded method. Create schema
-  // request.onupgradeneeded = ({ target }) => {
+   request.onupgradeneeded = ({ target }) => {
    request1.onupgradeneeded = ({ target }) => {  //change2
         const db = event.target.result;
         const objectStore = db.createObjectStore("transactions",
@@ -60,10 +60,9 @@
       // console.log(transStore); type something
     };
   // This returns a result that we can then manipulate.
-  //request.onsuccess = event => {
-  //  const db = request.result;
+  request.onsuccess = event => {
+    const db = request.result;
   request1.onsuccess = event => { //change3
-    console.log('u r in onsuccess');
     const db = request1.result;//change4
    // displayData();
         const transaction = db.transaction(["transactions"], "readwrite");
@@ -74,7 +73,6 @@
         const valueIndex = transStore.index('valueIndex');
         const dateIndex = transStore.index('dateIndex');
         // probably to add 2 more lines later
-        console.log({ transactionID: "1", name: "rhino horn", value: "-599.99", date: '12/19/2021' });
   
         // Adds data to our objectStore
        // transStore.add({ transactionID: "1", name: "rhino horn", value: "-599.99", date: '12/19/2021' });
@@ -85,7 +83,7 @@ const getRequest = transStore.get("1");
           console.log(getRequest.result);
         };
 
-  //  console.log(request.result.name);};
+    console.log(request.result.name);};
     console.log(request1.result.name);}; //change5
   </script>
 <!--my script ends here--> 
