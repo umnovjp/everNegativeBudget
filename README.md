@@ -6,7 +6,7 @@ I had an error message in console.log because I was offline. Function SaveRecord
 I can verify database on my local computer using Robo 3T. 
 ![image](https://user-images.githubusercontent.com/88174852/147984269-1a49e7fd-279d-4242-aedd-b3b08cc7834c.png)
 ## Technologies used 
-MongoDB was used along with its ODM (object data modeling) library called mongoose. Also, express.js was used to run app on a server. It is deployed on heroku. 
+MongoDB was used along with its ODM (object data modeling) library called mongoose. Express.js was used to run app on a server. The app is deployed on heroku. 
 ## Links
-### Github: https://github.com/umnovjp/everNegativeBudget/edit/main/README.md
+### Github: https://github.com/umnovjp/everNegativeBudget/
 ### Heroku: https://nameless-brushlands-27009.herokuapp.com/
